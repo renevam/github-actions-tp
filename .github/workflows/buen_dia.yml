@@ -1,0 +1,33 @@
+# .github-actions-tp/bonjour.yml
+
+name: Mi primer Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  salutations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decir buenos dias
+        run: echo "Buenos dias GitHub Actions!!"
+    steps:
+      - name: Afficher des infos sur le context
+        run: |
+          echo "Dépôt : ${{ github.repository }}"
+          echo "Branche : ${{ github.ref_name }}"
+          echo "Auteur du push : ${{ github.actor }}"
+          echo "SHA du commit : ${{ github.sha }}"
+
+jobs:
+  job-a:
+    runs-on: ubuntu-latest
+      steps:
+        - run: echo "Job A"
+
+  job-b:
+    runs-on: ubuntu-latest
+    needs: job-a          # job-b attend que job-a soit terminé
+    steps:
+      - run: echo "Job B (aprés A)"
