@@ -1,0 +1,14 @@
+name: Bonjour
+on:
+  push:
+    branches: [ main ]
+jobs:
+  salutation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decir buenos dias
+        run: echo "Buenos dias desde GitHub Actions!!"
+EOF
+git add .github/
+git commit -m "feat: primer workflow"
+git push origin main
