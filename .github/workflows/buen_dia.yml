@@ -19,7 +19,6 @@ jobs:
           echo "Auteur du push : ${{ github.actor }}"
           echo "SHA du commit : ${{ github.sha }}"
 
-jobs:
   job-a:
     runs-on: ubuntu-latest
     steps:
