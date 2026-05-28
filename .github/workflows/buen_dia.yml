@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Decir buenos dias
         run: echo "Buenos dias GitHub Actions!!"
-    steps:
       - name: Afficher des infos sur le context
         run: |
           echo "Dépôt : ${{ github.repository }}"
