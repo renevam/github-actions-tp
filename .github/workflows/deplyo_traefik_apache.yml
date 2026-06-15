@@ -1,21 +1,20 @@
 name: Despliegue con Ansible y Podman
-
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
-jons:
+jobs:
   infraestructura:
-    runs-on: self-hosted # <<-- Mi VM descarga el código y lo ejecuta
+    runs-on: self-hosted  # <-- Tu Debian 13 descarga el código y lo ejecuta
     steps:
-      - name: 1. Descargar código desde Github
+      - name: 1. Descargar código desde GitHub
         uses: actions/checkout@v4
 
       - name: 2. Asegurar que Ansible y Podman estén listos
         run: |
           sudo apt update
-          sudo apt install -y ansinble podman
+          sudo apt install -y ansible podman
 
-        - name: 3. Ejecutar el Playbook de Ansible localmente
-          run: |
-            ansible-playbook -i "localhost," -c local ansible/playbook.yml
+      - name: 3. Ejecutar el Playbook de Ansible localmente
+        run: |
+          ansible-playbook -i "localhost," -c local ansible/playbook.yml
