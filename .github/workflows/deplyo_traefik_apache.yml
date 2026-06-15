@@ -1,0 +1,21 @@
+name: Despliegue con Ansible y Podman
+
+on:
+  push:
+    branches: [main]
+
+jons:
+  infraestructura:
+    runs-on: self-hosted # <<-- Mi VM descarga el código y lo ejecuta
+    steps:
+      - name: 1. Descargar código desde Github
+        uses: actions/checkout@v4
+
+      - name: 2. Asegurar que Ansible y Podman estén listos
+        run: |
+          sudo apt update
+          sudo apt install -y ansinble podman
+
+        - name: 3. Ejecutar el Playbook de Ansible localmente
+          run: |
+            ansible-playbook -i "localhost," -c local Smart_City/ansible/playbook.yml
