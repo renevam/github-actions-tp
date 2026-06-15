@@ -1,0 +1,10 @@
+[Unit]
+Description=Contenedor Web Apache Estable
+After=network-online.target
+
+[Container]
+Image=docker.io/library/httpd:2.4
+PublishPort=8080:80
+
+[Install]
+WantedBy=multi-user.target
