@@ -1,0 +1,34 @@
+---
+- name: Orquestar Traefik y Apache con Quadlets
+  hosts: localhost
+  become: yes
+  tasks:
+
+    - name: Crear directorio para los Quadlets de systemd
+      file:
+        path: /etc/containers/systemd
+        state: directory
+        mode: '0755'
+
+    - name: Configurar Quadlet de Traefik (Puerto 80)
+      template:
+        src: templates/traefik.container
+        dest: /etc/containers/systemd/traefik.container
+
+    - name: Configurar Quadlet de Apache (Puerto 8080)
+      template:
+        src: templates/apache.container
+        dest: /etc/containers/systemd/apache.container
+
+    - name: Recargar systemd para aplicar Quadlets
+      systemd:
+        daemon_reload: yes
+
+    - name: Levantar servicios de los contenedores
+      systemd:
+        name: "{{ item }}"
+        state: restarted
+        enabled: yes
+      loop:
+        - traefik
+        - apache
