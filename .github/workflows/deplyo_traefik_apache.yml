@@ -18,4 +18,4 @@ jons:
 
         - name: 3. Ejecutar el Playbook de Ansible localmente
           run: |
-            ansible-playbook -i "localhost," -c local Smart_City/ansible/playbook.yml
+            ansible-playbook -i "localhost," -c local ansible/playbook.yml
