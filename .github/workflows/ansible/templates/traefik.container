@@ -1,0 +1,12 @@
+[Unit]
+Description=Contenedor Proxy Traefik
+After=network-online.target
+
+[Container]
+Image=docker.io/library/traefik:v3.0
+PublishPort=80:80
+PublishPort=8080:8080
+Exec=--api.insecure=true --providers.docker=false
+
+[Install]
+WantedBy=multi-user.target
